@@ -13,6 +13,28 @@
         },
         "next": [
             "ClickWikiHomePageUnreadBadge",
+            "ClickChapterUnreadBadge",
+            "WikiBackButton"
+        ]
+    },
+    "WikiBackButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "ReadWiki/WikiBackButton.png",
+                "roi": [
+                    1164,
+                    0,
+                    116,
+                    99
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "ClickWikiHomePageUnreadBadge",
             "ClickChapterUnreadBadge"
         ]
     },
@@ -20,7 +42,7 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "WikiUnreadBadge.png",
+                "template": "ReadWiki/WikiUnreadBadge.png",
                 "roi": [
                     184,
                     243,
@@ -33,14 +55,16 @@
             "type": "Click"
         },
         "next": [
-            "ClickChapterUnreadBadge"
+            "ClickChapterUnreadBadge",
+            "ClickRealUnreadPage",
+            "WikiBackButton"
         ]
     },
     "ClickChapterUnreadBadge": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "WikiUnreadBadge.png",
+                "template": "ReadWiki/WikiUnreadBadge.png",
                 "roi": [
                     21,
                     51,
@@ -61,19 +85,20 @@
         "next": [
             "ClickRealUnreadPage",
             "ScrollListForNextUnreadWiki",
-            "ClickChapterUnreadBadge"
+            "ClickChapterUnreadBadge",
+            "WikiBackButton"
         ]
     },
     "ClickRealUnreadPage": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "WikiUnreadBadge.png",
+                "template": "ReadWiki/WikiUnreadBadge.png",
                 "roi": [
-                    263,
-                    126,
-                    60,
-                    553
+                    206,
+                    130,
+                    160,
+                    585
                 ]
             }
         },
@@ -91,7 +116,8 @@
         "next": [
             "ClickRealUnreadPage",
             "ScrollListForNextUnreadWiki",
-            "ClickChapterUnreadBadge"
+            "ClickChapterUnreadBadge",
+            "WikiBackButton"
         ]
     },
     "ScrollListForNextUnreadWiki": {
@@ -99,8 +125,8 @@
             "type": "TemplateMatch",
             "param": {
                 "template": [
-                    "WikiUnreadBadge.png",
-                    "WikiUnreadBadgeWithBlackBG.png"
+                    "ReadWiki/WikiUnreadBadge.png",
+                    "ReadWiki/WikiUnreadBadgeWithBlackBG.png"
                 ],
                 "roi": [
                     136,
@@ -127,7 +153,8 @@
         "next": [
             "ClickRealUnreadPage",
             "ScrollListForNextUnreadWiki",
-            "ClickChapterUnreadBadge"
+            "ClickChapterUnreadBadge",
+            "WikiBackButton"
         ]
     }
 }
