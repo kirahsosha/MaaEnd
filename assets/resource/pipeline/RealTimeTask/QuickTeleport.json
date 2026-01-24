@@ -1,11 +1,4 @@
 {
-    "RealTimeQuickTeleport": {
-        "doc": "快速传送入口",
-        "next": [
-            "RealTimeQuickTeleportList",
-            "RealTimeQuickTeleportDirect"
-        ]
-    },
     "RealTimeQuickTeleportList": {
         "doc": "从传送点列表中点击传送点图标（当多个地图标点重叠时）",
         "recognition": "OCR",
