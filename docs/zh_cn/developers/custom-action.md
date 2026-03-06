@@ -23,6 +23,7 @@
 按顺序执行 `custom_action_param` 中 `sub` 字段指定的任务名。
 
 - **参数（`custom_action_param`）**
+
     - 需要传入一个 JSON 对象，由框架序列化为字符串后传给 Go。
     - 字段说明：
         - `sub: string[]`：要顺序执行的任务名列表（必填）。例如 `["TaskA", "TaskB"]` 会先执行 TaskA，完成后执行 TaskB。

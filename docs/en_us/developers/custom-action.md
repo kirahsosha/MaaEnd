@@ -23,6 +23,7 @@ as long as it is registered during the resource loading stage, it can be called 
 It executes the task names specified in the `sub` field of `custom_action_param` in sequence.
 
 - **Parameters (`custom_action_param`)**
+
     - A JSON object is required, which is serialized to a string by the framework and passed to Go.
     - Field descriptions:
         - `sub: string[]`: List of task names to execute in sequence (required). For example, `["TaskA", "TaskB"]` will execute TaskA first, then TaskB after completion.
