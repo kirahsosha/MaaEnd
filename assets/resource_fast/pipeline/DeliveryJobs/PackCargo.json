@@ -64,7 +64,7 @@
         ]
     },
     "DeliveryJobsSelectItemLoop": {
-        "desc": "选择要填充的物品，如果不在第一屏，向上滑动，再次寻找，直到找到或者滑动 3 次",
+        "desc": "选择要填充的物品，如果不在第一屏，向上滑动，再次寻找，直到找到或者滑动 5 次",
         "recognition": "OCR",
         "roi": [
             53,
@@ -151,17 +151,18 @@
             0
         ],
         "next": [
-            "DeliveryJobsDeliveryJobsSelectItemScrollUpClearHitCount"
+            "DeliveryJobsSelectItemScrollUpClearHitCount"
         ]
     },
-    "DeliveryJobsDeliveryJobsSelectItemScrollUpClearHitCount": {
+    "DeliveryJobsSelectItemScrollUpClearHitCount": {
         "desc": "清除向上滑动屏幕的命中计数，下一个仓储节点可能也需要滑动",
         "action": "Custom",
         "custom_action": "ClearHitCount",
         "custom_action_param": {
             "nodes": [
                 "DeliveryJobsSelectItemScrollUp"
-            ]
+            ],
+            "strict": false
         },
         "next": [
             "DeliveryJobsFillToMaxNextStep"
