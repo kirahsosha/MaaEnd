@@ -319,14 +319,14 @@
                 "box_index": 1
             }
         },
+        "pre_wait_freezes": {
+            "time": 80,
+            "timeout": 2000
+        },
         "action": {
             "type": "Click"
         },
         "post_wait_freezes": {
-            "time": 80,
-            "timeout": 2000
-        },
-        "pre_wait_freezes": {
             "time": 80,
             "timeout": 2000
         },
