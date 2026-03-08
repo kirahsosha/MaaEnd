@@ -3,9 +3,19 @@
         "anchor": {
             "AutoEssenceAfterMoveToTriggerPoint": "AutoEssenceClickTriggerButtonPre"
         },
-        "rate_limit": 1000,
         "next": [
             "AutoEssenceClickEssenceStartButton",
+            "[JumpBack]AutoEssenceLocationSetup",
+            "[Anchor]AutoEssenceMoveToTriggerPoint"
+        ],
+        "focus": {
+            "Node.Action.Starting": "▶️**准备开始本次基质刷取**"
+        }
+    },
+    "AutoEssenceLocationSetup": {
+        "rate_limit": 1000,
+        "max_hit": 1,
+        "next": [
             "VFTheHubLocationAssertion",
             "VFOriginiumScienceParkLocationAssertion",
             "VFOriginLodespringLocationAssertion",
@@ -60,7 +70,7 @@
             "type": "Click"
         },
         "anchor": {
-            "AutoEssenceAfterAltKeyUp": "AutoEssenceClickEssenceStartButton"
+            "AutoEssenceAfterAltKeyUp": "AutoEssenceReadyToStart"
         },
         "next": [
             "AutoEssenceAltKeyUp"
@@ -86,6 +96,12 @@
             "[Anchor]AutoEssenceMoveToTriggerPoint"
         ]
     },
+    "AutoEssenceReadyToStart": {
+        "next": [
+            "AutoEssenceMistakeFactoryDevice",
+            "AutoEssenceClickEssenceStartButton"
+        ]
+    },
     "AutoEssenceClickEssenceStartButton": {
         "recognition": {
             "type": "TemplateMatch",
@@ -109,6 +125,7 @@
         "post_delay": 1000,
         "next": [
             "AutoEssenceDismissWarning1",
+            "[JumpBack]AutoEssenceLocationSetup",
             "[Anchor]AutoEssenceWalkAround"
         ],
         "focus": {
@@ -134,10 +151,42 @@
         "post_delay": 1000,
         "next": [
             "AutoEssenceDismissWarning2",
+            "[JumpBack]AutoEssenceLocationSetup",
             "[Anchor]AutoEssenceWalkAround"
         ],
         "focus": {
             "Node.Action.Starting": "👷无视风险，继续刷取"
+        }
+    },
+    "AutoEssenceMistakeFactoryDevice": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    950,
+                    30,
+                    270,
+                    230
+                ],
+                "template": "AutoEssence/FactoryDeviceDialog.png"
+            }
+        },
+        "action": {
+            "type": "Click", // 此处点击的是工业设备界面的关闭按钮
+            "param": {
+                "target_offset": [
+                    -50,
+                    0,
+                    -50,
+                    0
+                ]
+            }
+        },
+        "next": [
+            "AutoEssenceClickTriggerButtonFailed"
+        ],
+        "focus": {
+            "Node.Action.Starting": "😕误入工业设备界面，点击关闭按钮"
         }
     },
     "AutoEssenceDismissWarning2": {
@@ -158,6 +207,7 @@
         },
         "post_delay": 1000,
         "next": [
+            "[JumpBack]AutoEssenceLocationSetup",
             "[Anchor]AutoEssenceWalkAround"
         ],
         "focus": {
@@ -199,7 +249,7 @@
         },
         "timeout": 1000,
         "next": [
-            "AutoEssenceClickObtainButton"
+            "AutoEssenceClickObtainButton" // 覆写为 AutoEssenceClickDiscardButton 即可实现不领取奖励
         ],
         "on_error": [
             "AutoEssenceClickObtainButtonFailedPre"
@@ -225,15 +275,15 @@
             "type": "Click",
             "param": {
                 "target_offset": [
-                    -7,
+                    -10,
                     15,
-                    -7,
+                    -10,
                     -60
                 ]
             }
         },
         "anchor": {
-            "AutoEssenceAfterAltKeyUp": "AutoEssenceChooseScaling"
+            "AutoEssenceAfterAltKeyUp": "AutoEssenceChooseScalingPre"
         },
         "next": [
             "AutoEssenceAltKeyUp"
@@ -262,11 +312,48 @@
             "[Anchor]AutoEssenceMoveToTriggerPoint"
         ]
     },
-    "AutoEssenceChooseScaling": {
-        "post_delay": 1000,
+    "AutoEssenceClickDiscardButton": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    780,
+                    340,
+                    170,
+                    310
+                ],
+                "template": "AutoEssence/EssenceObtain.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "order_by": "Score"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [
+                    -10,
+                    60,
+                    -10,
+                    -60
+                ]
+            }
+        },
+        "anchor": {
+            "AutoEssenceAfterAltKeyUp": "AutoEssenceConfirmDiscard"
+        },
+        "next": [
+            "AutoEssenceAltKeyUp"
+        ],
+        "focus": {
+            "Node.Action.Starting": "👆点击放弃奖励按钮"
+        }
+    },
+    "AutoEssenceChooseScalingPre": {
+        "pre_wait_freezes": 1000,
         "next": [
             "AutoEssenceChooseScaling1",
-            "AutoEssenceConfirmObtain"
+            "AutoEssenceAfterChooseScaling"
         ]
     },
     "AutoEssenceChooseScaling1": {
@@ -286,15 +373,19 @@
         "action": {
             "type": "Click"
         },
-        "post_delay": 1000,
         "next": [
-            "[JumpBack]AutoEssenceChooseOverrideOff",
-            "[JumpBack]AutoEssenceChooseOverrideOn",
-            "AutoEssenceConfirmObtain"
+            "AutoEssenceAfterChooseScaling"
         ],
         "focus": {
             "Node.Action.Starting": "👆点击单倍领取按钮"
         }
+    },
+    "AutoEssenceAfterChooseScaling": {
+        "next": [
+            "[JumpBack]AutoEssenceChooseOverrideOff",
+            "[JumpBack]AutoEssenceChooseOverrideOn",
+            "AutoEssenceConfirmObtain"
+        ]
     },
     "AutoEssenceChooseOverrideOff": {
         "enabled": false,
@@ -365,6 +456,30 @@
             "Node.Action.Starting": "👆点击确认领取按钮"
         }
     },
+    "AutoEssenceConfirmDiscard": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "roi": [
+                    710,
+                    390,
+                    210,
+                    150
+                ],
+                "template": "Common/Button/YellowConfirmButtonType1.png"
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "post_delay": 1000,
+        "next": [
+            "AutoEssenceOnSuccess"
+        ],
+        "focus": {
+            "Node.Action.Starting": "👆点击确认放弃按钮"
+        }
+    },
     "AutoEssenceLowSp": {
         "recognition": {
             "type": "TemplateMatch",
@@ -411,8 +526,16 @@
         }
     },
     "AutoEssenceOnSuccess": {
+        "next": [
+            "AutoEssenceOnComplete"
+        ],
         "focus": {
             "Node.Action.Starting": "✅已完成一次基质刷取"
+        }
+    },
+    "AutoEssenceOnComplete": {
+        "focus": {
+            "Node.Action.Starting": "🎉**已完成所规定次数的基质刷取**"
         }
     }
 }
