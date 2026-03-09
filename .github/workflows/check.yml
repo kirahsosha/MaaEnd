@@ -3,7 +3,7 @@ name: check
 on:
   push:
     branches:
-      - "main"
+      - "v2"
     paths:
       - ".github/workflows/check.yml"
       - "assets/**"

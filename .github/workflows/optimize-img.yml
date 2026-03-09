@@ -3,7 +3,7 @@ name: PNG Image Optimization
 on:
   push:
     branches:
-      - "main"
+      - "v2"
     paths:
       - "**/*.png"
   workflow_dispatch:

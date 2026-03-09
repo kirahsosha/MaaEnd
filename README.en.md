@@ -16,7 +16,7 @@ Powered by [MaaFramework](https://github.com/MaaXYZ/MaaFramework) & [MXU](https:
 
 Actively under development 🎉…
 
-[简体中文](https://github.com/MaaEnd/MaaEnd/blob/main/README.md) | [English](https://github.com/MaaEnd/MaaEnd/blob/main/README.en.md)
+[简体中文](https://github.com/MaaEnd/MaaEnd/blob/v2/README.md) | [English](https://github.com/MaaEnd/MaaEnd/blob/v2/README.en.md)
 
 </div>
 
@@ -59,7 +59,7 @@ If you run into any issues, feel free to open an [ISSUE](https://github.com/MaaE
 
 ## 🛠️ Developer Guide
 
-Want to contribute or dig deeper into how MaaEnd works? Check out the [Developer Guide](https://github.com/MaaEnd/MaaEnd/blob/main/docs/en_us/developers/development.md).
+Want to contribute or dig deeper into how MaaEnd works? Check out the [Developer Guide](https://github.com/MaaEnd/MaaEnd/blob/v2/docs/en_us/developers/development.md).
 
 We welcome contributions from all developers. Let’s make MaaEnd even better together! 💪
 
