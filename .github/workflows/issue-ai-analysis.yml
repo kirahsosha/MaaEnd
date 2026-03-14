@@ -3,6 +3,8 @@ name: Issue AI Analysis
 on:
   issues:
     types: [opened]
+  issue_comment:
+    types: [created]
   workflow_dispatch:
     inputs:
       issue_number:
@@ -12,6 +14,17 @@ on:
 
 jobs:
   request-analysis:
+    # 仅在以下情况运行：
+    # - issue 被打开
+    # - 手动触发
+    # - 有人创建了包含 @MaaEndBot 的评论（且评论者不是机器人）
+    if: |
+      (github.event_name == 'issues' && github.event.action == 'opened') ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issue_comment' && 
+       github.event.action == 'created' && 
+       contains(github.event.comment.body, '@MaaEndBot') && 
+       github.event.comment.user.type != 'Bot')
     runs-on: ubuntu-latest
     permissions:
       issues: write
